@@ -71,6 +71,8 @@ namespace Start_Form
             lblOperand1.Text = operand1.ToString();
             lblOperand2.Text = operand2.ToString();
             lblOperator.Text = Operator;
+            pbTime.Maximum = Time;
+            pbTime.Value = Time / 2;
             switch (Operator)
             {
                 case "+":

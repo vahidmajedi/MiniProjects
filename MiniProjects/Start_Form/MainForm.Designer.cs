@@ -46,14 +46,16 @@
             this.btn0 = new System.Windows.Forms.Button();
             this.btnC = new System.Windows.Forms.Button();
             this.stsMain = new System.Windows.Forms.StatusStrip();
+            this.tatlbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tstlbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnStart = new System.Windows.Forms.Button();
-            this.tatlbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tstlbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.pbTime = new System.Windows.Forms.ProgressBar();
             this.stsMain.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +63,7 @@
             // lblOperand1
             // 
             this.lblOperand1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOperand1.Location = new System.Drawing.Point(13, 53);
+            this.lblOperand1.Location = new System.Drawing.Point(17, 70);
             this.lblOperand1.Name = "lblOperand1";
             this.lblOperand1.Size = new System.Drawing.Size(47, 23);
             this.lblOperand1.TabIndex = 0;
@@ -70,7 +72,7 @@
             // lblOperand2
             // 
             this.lblOperand2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOperand2.Location = new System.Drawing.Point(96, 53);
+            this.lblOperand2.Location = new System.Drawing.Point(100, 70);
             this.lblOperand2.Name = "lblOperand2";
             this.lblOperand2.Size = new System.Drawing.Size(47, 23);
             this.lblOperand2.TabIndex = 1;
@@ -79,7 +81,7 @@
             // lblOperator
             // 
             this.lblOperator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOperator.Location = new System.Drawing.Point(66, 53);
+            this.lblOperator.Location = new System.Drawing.Point(70, 70);
             this.lblOperator.Name = "lblOperator";
             this.lblOperator.Size = new System.Drawing.Size(24, 23);
             this.lblOperator.TabIndex = 2;
@@ -87,7 +89,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(146, 53);
+            this.label1.Location = new System.Drawing.Point(150, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(12, 23);
             this.label1.TabIndex = 3;
@@ -98,7 +100,7 @@
             // 
             this.txtResult.AcceptsTab = true;
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtResult.Location = new System.Drawing.Point(159, 53);
+            this.txtResult.Location = new System.Drawing.Point(163, 70);
             this.txtResult.Name = "txtResult";
             this.txtResult.Size = new System.Drawing.Size(63, 26);
             this.txtResult.TabIndex = 4;
@@ -107,7 +109,7 @@
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(13, 102);
+            this.btn1.Location = new System.Drawing.Point(17, 119);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(35, 35);
             this.btn1.TabIndex = 5;
@@ -117,7 +119,7 @@
             // 
             // btn2
             // 
-            this.btn2.Location = new System.Drawing.Point(54, 102);
+            this.btn2.Location = new System.Drawing.Point(58, 119);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(35, 35);
             this.btn2.TabIndex = 6;
@@ -127,7 +129,7 @@
             // 
             // btn3
             // 
-            this.btn3.Location = new System.Drawing.Point(95, 102);
+            this.btn3.Location = new System.Drawing.Point(99, 119);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(35, 35);
             this.btn3.TabIndex = 7;
@@ -137,7 +139,7 @@
             // 
             // btn6
             // 
-            this.btn6.Location = new System.Drawing.Point(95, 143);
+            this.btn6.Location = new System.Drawing.Point(99, 160);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(35, 35);
             this.btn6.TabIndex = 10;
@@ -147,7 +149,7 @@
             // 
             // btn5
             // 
-            this.btn5.Location = new System.Drawing.Point(54, 143);
+            this.btn5.Location = new System.Drawing.Point(58, 160);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(35, 35);
             this.btn5.TabIndex = 9;
@@ -157,7 +159,7 @@
             // 
             // btn4
             // 
-            this.btn4.Location = new System.Drawing.Point(13, 143);
+            this.btn4.Location = new System.Drawing.Point(17, 160);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(35, 35);
             this.btn4.TabIndex = 8;
@@ -167,7 +169,7 @@
             // 
             // btn9
             // 
-            this.btn9.Location = new System.Drawing.Point(95, 184);
+            this.btn9.Location = new System.Drawing.Point(99, 201);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(35, 35);
             this.btn9.TabIndex = 13;
@@ -177,7 +179,7 @@
             // 
             // btn8
             // 
-            this.btn8.Location = new System.Drawing.Point(54, 184);
+            this.btn8.Location = new System.Drawing.Point(58, 201);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(35, 35);
             this.btn8.TabIndex = 12;
@@ -187,7 +189,7 @@
             // 
             // btn7
             // 
-            this.btn7.Location = new System.Drawing.Point(13, 184);
+            this.btn7.Location = new System.Drawing.Point(17, 201);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(35, 35);
             this.btn7.TabIndex = 11;
@@ -197,7 +199,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(95, 225);
+            this.btnOK.Location = new System.Drawing.Point(99, 242);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(35, 35);
             this.btnOK.TabIndex = 16;
@@ -207,7 +209,7 @@
             // 
             // btn0
             // 
-            this.btn0.Location = new System.Drawing.Point(54, 225);
+            this.btn0.Location = new System.Drawing.Point(58, 242);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(35, 35);
             this.btn0.TabIndex = 15;
@@ -217,7 +219,7 @@
             // 
             // btnC
             // 
-            this.btnC.Location = new System.Drawing.Point(13, 225);
+            this.btnC.Location = new System.Drawing.Point(17, 242);
             this.btnC.Name = "btnC";
             this.btnC.Size = new System.Drawing.Size(35, 35);
             this.btnC.TabIndex = 14;
@@ -232,9 +234,19 @@
             this.tstlbl});
             this.stsMain.Location = new System.Drawing.Point(0, 296);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(269, 22);
+            this.stsMain.Size = new System.Drawing.Size(239, 22);
             this.stsMain.TabIndex = 17;
             this.stsMain.Text = "sts";
+            // 
+            // tatlbl
+            // 
+            this.tatlbl.Name = "tatlbl";
+            this.tatlbl.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tstlbl
+            // 
+            this.tstlbl.Name = "tstlbl";
+            this.tstlbl.Size = new System.Drawing.Size(0, 17);
             // 
             // menuStrip1
             // 
@@ -243,7 +255,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(269, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(239, 24);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -278,29 +290,40 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(149, 102);
+            this.btnStart.Location = new System.Drawing.Point(153, 119);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(87, 38);
+            this.btnStart.Size = new System.Drawing.Size(73, 38);
             this.btnStart.TabIndex = 19;
-            this.btnStart.Text = "Let\'s Go Game";
+            this.btnStart.Text = "Begin Game";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // tatlbl
+            // btnClose
             // 
-            this.tatlbl.Name = "tatlbl";
-            this.tatlbl.Size = new System.Drawing.Size(0, 17);
+            this.btnClose.Location = new System.Drawing.Point(153, 163);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(73, 38);
+            this.btnClose.TabIndex = 20;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
-            // tstlbl
+            // pbTime
             // 
-            this.tstlbl.Name = "tstlbl";
-            this.tstlbl.Size = new System.Drawing.Size(0, 17);
+            this.pbTime.Location = new System.Drawing.Point(17, 39);
+            this.pbTime.Name = "pbTime";
+            this.pbTime.Size = new System.Drawing.Size(209, 16);
+            this.pbTime.Step = 1;
+            this.pbTime.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbTime.TabIndex = 21;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 318);
+            this.ClientSize = new System.Drawing.Size(239, 318);
+            this.Controls.Add(this.pbTime);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.stsMain);
             this.Controls.Add(this.menuStrip1);
@@ -363,5 +386,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.ToolStripStatusLabel tatlbl;
         private System.Windows.Forms.ToolStripStatusLabel tstlbl;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ProgressBar pbTime;
     }
 }
