@@ -8,23 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Start_Form
+namespace MiniGames
 {
-    public partial class frmStart : Form
+    public partial class frmSetting : Form
     {
-        public frmStart()
+        public frmSetting()
         {
             InitializeComponent();
+        }
+
+        private void frmSetting_Load(object sender, EventArgs e)
+        {
+            cbOperator.SelectedIndex = 0;
         }
 
         private void tbTime_Scroll(object sender, EventArgs e)
         {
             lblTime.Text = tbTime.Value.ToString() + " s";
-        }
-
-        private void frmStart_Load(object sender, EventArgs e)
-        {
-            cbOperator.SelectedIndex = 0;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -38,9 +38,10 @@ namespace Start_Form
                 MessageBox.Show("Select Right Operands");
             frmMain.MinOperand = (int)nudOperand1.Value;
             frmMain.MaxOperand = (int)nudOperand2.Value;
-            frmMain.Time = tbTime.Value;
+            frmMain.MaxTime = tbTime.Value;
             frmMain.Operator= (string)cbOperator.SelectedItem;
             btnCancel_Click(sender, e);
         }
+
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Start_Form
+﻿namespace MiniGames
 {
-    partial class frmStart
+    partial class frmSetting
     {
         /// <summary>
         /// Required designer variable.
@@ -47,43 +47,47 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(30, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(169, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "From Number:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(184, 14);
+            this.label2.Location = new System.Drawing.Point(371, 29);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(142, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "To Number:";
             // 
             // nudOperand1
             // 
-            this.nudOperand1.Location = new System.Drawing.Point(92, 12);
+            this.nudOperand1.Location = new System.Drawing.Point(200, 27);
+            this.nudOperand1.Margin = new System.Windows.Forms.Padding(7);
             this.nudOperand1.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.nudOperand1.Name = "nudOperand1";
-            this.nudOperand1.Size = new System.Drawing.Size(67, 20);
+            this.nudOperand1.Size = new System.Drawing.Size(123, 35);
             this.nudOperand1.TabIndex = 2;
             // 
             // nudOperand2
             // 
-            this.nudOperand2.Location = new System.Drawing.Point(253, 13);
+            this.nudOperand2.Location = new System.Drawing.Point(517, 27);
+            this.nudOperand2.Margin = new System.Windows.Forms.Padding(7);
             this.nudOperand2.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.nudOperand2.Name = "nudOperand2";
-            this.nudOperand2.Size = new System.Drawing.Size(67, 20);
+            this.nudOperand2.Size = new System.Drawing.Size(132, 35);
             this.nudOperand2.TabIndex = 3;
             this.nudOperand2.Value = new decimal(new int[] {
             1000,
@@ -94,9 +98,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(350, 14);
+            this.label3.Location = new System.Drawing.Point(690, 29);
+            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(115, 29);
             this.label3.TabIndex = 4;
             this.label3.Text = "Operator:";
             // 
@@ -109,26 +114,29 @@
             "*",
             "/",
             "%"});
-            this.cbOperator.Location = new System.Drawing.Point(408, 10);
+            this.cbOperator.Location = new System.Drawing.Point(811, 28);
+            this.cbOperator.Margin = new System.Windows.Forms.Padding(7);
             this.cbOperator.Name = "cbOperator";
-            this.cbOperator.Size = new System.Drawing.Size(33, 21);
+            this.cbOperator.Size = new System.Drawing.Size(72, 37);
             this.cbOperator.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 66);
+            this.label4.Location = new System.Drawing.Point(28, 147);
+            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.Size = new System.Drawing.Size(215, 29);
             this.label4.TabIndex = 6;
             this.label4.Text = "Select Think Time:";
             // 
             // tbTime
             // 
-            this.tbTime.Location = new System.Drawing.Point(141, 55);
+            this.tbTime.Location = new System.Drawing.Point(329, 123);
+            this.tbTime.Margin = new System.Windows.Forms.Padding(7);
             this.tbTime.Maximum = 20;
             this.tbTime.Name = "tbTime";
-            this.tbTime.Size = new System.Drawing.Size(204, 45);
+            this.tbTime.Size = new System.Drawing.Size(476, 101);
             this.tbTime.TabIndex = 7;
             this.tbTime.Value = 3;
             this.tbTime.Scroll += new System.EventHandler(this.tbTime_Scroll);
@@ -136,17 +144,19 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(114, 66);
+            this.lblTime.Location = new System.Drawing.Point(266, 147);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(21, 13);
+            this.lblTime.Size = new System.Drawing.Size(44, 29);
             this.lblTime.TabIndex = 8;
             this.lblTime.Text = "3 s";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(117, 117);
+            this.btnSave.Location = new System.Drawing.Point(180, 269);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(7);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(103, 33);
+            this.btnSave.Size = new System.Drawing.Size(240, 74);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -154,19 +164,20 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(242, 117);
+            this.btnCancel.Location = new System.Drawing.Point(472, 269);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(7);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(103, 33);
+            this.btnCancel.Size = new System.Drawing.Size(240, 74);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // frmStart
+            // frmSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 176);
+            this.ClientSize = new System.Drawing.Size(914, 393);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTime);
@@ -178,11 +189,12 @@
             this.Controls.Add(this.nudOperand1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmStart";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(7);
+            this.Name = "frmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Setting";
-            this.Load += new System.EventHandler(this.frmStart_Load);
+            this.Load += new System.EventHandler(this.frmSetting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudOperand1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOperand2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTime)).EndInit();

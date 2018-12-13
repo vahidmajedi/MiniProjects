@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Start_Form
+namespace MiniGames
 {
     public partial class frmMain : Form
     {
-        public static int MaxOperand = 1000, MinOperand = 0, Time = 3;
+        public static int MaxOperand = 1000, MinOperand = 0, MaxTime = 3;
         public static string Operator = "+";
         int result, score = 0, test_run = 0;
+        float CurrentTime = 0;
+
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            pbTime.Value = pbTime.Maximum;
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -26,41 +33,14 @@ namespace Start_Form
             txtResult.Text += btnNo.Text;
         }
 
-        private void btnC_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = null;
-        }
-
-        private void txtResult_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                Compare();
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             Compare();
         }
 
-        private void Compare()
+        private void btnC_Click(object sender, EventArgs e)
         {
-            int myResult = Convert.ToInt32(txtResult.Text);
-            test_run++;
-            if (myResult == result)
-                score++;
-            tstlbl.Text = score + "/" + test_run;
             txtResult.Text = null;
-        }
-
-        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmStart startForm = new frmStart();
-            startForm.ShowDialog();        
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -71,8 +51,8 @@ namespace Start_Form
             lblOperand1.Text = operand1.ToString();
             lblOperand2.Text = operand2.ToString();
             lblOperator.Text = Operator;
-            pbTime.Maximum = Time;
-            pbTime.Value = Time / 2;
+            CurrentTime = 0;
+            timer.Enabled = true;
             switch (Operator)
             {
                 case "+":
@@ -92,5 +72,50 @@ namespace Start_Form
                     break;
             }
         }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            CurrentTime += (float)timer.Interval / 1000;
+            if (CurrentTime > MaxTime)
+            {
+                timer.Enabled = false;
+                pbTime.Value = pbTime.Minimum;
+                lblTime.Text = "0";
+            }
+
+            else
+            {
+                pbTime.Value = pbTime.Maximum - (int)(CurrentTime * pbTime.Maximum) / MaxTime;
+                lblTime.Text = (MaxTime - Math.Floor(CurrentTime)).ToString();
+            }
+        }
+
+        private void txtResult_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                Compare();
+        }
+
+        private void Compare()
+        {
+            int myResult = Convert.ToInt32(txtResult.Text);
+            test_run++;
+            if (myResult == result)
+                score++;
+            tstlbl.Text = score + "/" + test_run;
+            txtResult.Text = null;
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSetting SettingForm = new frmSetting();
+            SettingForm.ShowDialog();        
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

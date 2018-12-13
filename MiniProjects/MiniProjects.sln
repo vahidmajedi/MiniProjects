@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Start_Form", "Start_Form\Start_Form.csproj", "{D84DE92F-4D09-477D-9837-F52322BC5CE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculusGame", "Start_Form\CalculusGame.csproj", "{D84DE92F-4D09-477D-9837-F52322BC5CE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
