@@ -19,7 +19,11 @@ namespace MiniGames
 
         private void frmSetting_Load(object sender, EventArgs e)
         {
-            cbOperator.SelectedIndex = 0;
+            cbOperator.SelectedIndex = frmMain.OperatorIdx;
+            nudOperand1.Value = frmMain.MinOperand;
+            nudOperand2.Value = frmMain.MaxOperand;
+            tbTime.Value = frmMain.MaxTime;
+            lblTime.Text = tbTime.Value.ToString() + " s";
         }
 
         private void tbTime_Scroll(object sender, EventArgs e)
@@ -40,6 +44,7 @@ namespace MiniGames
             frmMain.MaxOperand = (int)nudOperand2.Value;
             frmMain.MaxTime = tbTime.Value;
             frmMain.Operator= (string)cbOperator.SelectedItem;
+            frmMain.OperatorIdx = cbOperator.SelectedIndex;
             btnCancel_Click(sender, e);
         }
 
