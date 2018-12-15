@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,14 @@ namespace MiniGames
 {
     public partial class frmMain : Form
     {
-        int row = 10, col = 10, size = 30;
+        int row = 10, col = 10, size = 30, MineNo = 15;
         int[,] DataMat = new int[10, 10];
         Button[,] cells = new Button[10, 10];
-
+        Dictionary<int, Color> NumbersColor = new Dictionary<int, Color>()
+        {
+            {0, Color.Gray}, {1, Color.Blue}, {2, Color.Green}, {3, Color.Red}, {4, Color.Brown},
+            {5, Color.GreenYellow}, {6, Color.HotPink}, {7, Color.Khaki}, {8, Color.Indigo}, {9, Color.Orange}
+        };
         public frmMain()
         {
             InitializeComponent();
@@ -24,21 +29,41 @@ namespace MiniGames
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadField();
-            DataMat = AllocateMines(20);
+            DataMat = AllocateMines(MineNo);
+        }
+
+        private void LoadField()
+        {
+            Point p = new Point();
             for (int i = 0; i < row; i++)
                 for (int j = 0; j < col; j++)
-                    cells[i, j].Text = DataMat[i, j].ToString();
+                {
+                    p.X = i;
+                    p.Y = j;
+                    cells[i, j] = new Button()
+                    {
+                        Parent = this,
+                        Height = size,
+                        Width = size,
+                        Location = new Point(size * i, size * j),
+                        Text = null,
+                        Tag = p,
+                        TabStop = false,
+                    };
+                    cells[i, j].Click += ButtonClicked;
+                }
+
         }
 
         private int[,] AllocateMines(int MineNo)
         {
-            for (int i = 0; i < DataMat.GetLength(0); i++)
-                for (int j = 0; j < DataMat.GetLength(1); j++)
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
                     DataMat[i, j] = 0;
 
             Random r = new Random();
             int cnt = 0, Mr, Mc;
-            while (cnt <= MineNo)
+            while (cnt < MineNo)
             {
                 Mr = r.Next(row);
                 Mc = r.Next(col);
@@ -61,7 +86,7 @@ namespace MiniGames
             for (int i = r - 1; i <= r + 1; i++)
                 for (int j = c - 1; j <= c + 1; j++)
                 {
-                    if (i < 0 || j < 0)
+                    if (i < 0 || j < 0 || i >= row || j >= col)
                         continue;
                     if (DataMat[i, j] == 9)
                         res++;
@@ -69,49 +94,42 @@ namespace MiniGames
             return res;
         }
 
-        private void LoadField()
-        {
-            int cnt = -1;
-            for (int i = 0; i < row; i++)
-                for (int j = 0; j < col; j++)
-                {
-                    cnt++;
-                    cells[i, j] = new Button()
-                    {
-                        Parent = this,
-                        Height = size,
-                        Width = size,
-                        Location = new Point(size * i, size * j),
-                        Text = null,
-                        Tag = cnt,
-                        Name = "btn" + cnt,
-                    };
-                    cells[i, j].Click += ButtonClicked;
-                    cells[i, j].EnabledChanged += ButtonEnableChanged;
-                }
-
-        }
-      
         private void ButtonClicked(object sender, EventArgs e)
         {
             Button myButton = (Button)sender;
+            Point p = (Point)myButton.Tag;
+            int num = DataMat[p.X, p.Y];
             myButton.Enabled = false;
-        }
-
-        private void ButtonEnableChanged(object sender, EventArgs e)
-        {
-            Button myButton = (Button)sender;
             myButton.BackColor = Color.LightGray;
+            if (DataMat[p.X, p.Y] == 9)
+            {
+                myButton.BackgroundImage = MineSwiper.Properties.Resources.MinePic;
+                myButton.BackgroundImageLayout = ImageLayout.Zoom;
+                myButton.BackColor = Color.Red;
+                for (int i = 0; i < row; i++)
+                    for (int j = 0; j < col; j++)
+                        cells[i, j].Enabled = false;
+            }
+            else if (num == 0)
+            {
+                ArrayList zeros = new ArrayList() { p };
+                foreach (Point pp in zeros)
+                    for (int i = pp.X - 1; i <= pp.X + 1; i++)
+                        for (int j = pp.Y - 1; j <= pp.Y + 1; j++)
+                        {
+                            if (i < 0 || j < 0 || i > row || j > col || (i == pp.X && j == pp.Y))
+                                continue;
+                            else
+                            {
+                                if (DataMat[i, j] == 0)
+                                    zeros.Add(new Point(i, j));
+                            }
+                        }
+            }
+            else
+                myButton.Text = num.ToString();
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = false;
-        }
-
-        private void button1_EnabledChanged(object sender, EventArgs e)
-        {
-            button1.BackColor = Color.Black;
-        }
     }
 }
