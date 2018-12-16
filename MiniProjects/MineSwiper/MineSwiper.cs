@@ -13,7 +13,7 @@ namespace MiniGames
 {
     public partial class frmMain : Form
     {
-        int row = 10, col = 10, size = 30, MineNo = 25;
+        int row = 10, col = 10, size = 30, MineNo = 20;
         int[,] DataMat = new int[10, 10];
         Button[,] cells = new Button[10, 10];
 
@@ -26,6 +26,8 @@ namespace MiniGames
         {
             LoadField();
             DataMat = AllocateMines(MineNo);
+            lblMines.Text = MineNo.ToString();
+            lblTime.Text = "0";
         }
 
         private void LoadField()
@@ -38,7 +40,7 @@ namespace MiniGames
                     p.Y = j;
                     cells[i, j] = new Button()
                     {
-                        Parent = this,
+                        Parent = this.pnlField,
                         Height = size,
                         Width = size,
                         Location = new Point(size * i, size * j),
@@ -77,29 +79,6 @@ namespace MiniGames
             return DataMat;
         }
 
-        private void frmMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-                foreach (Button btn in cells)
-                    if (btn.Bounds.Contains(e.Location))
-                    {
-                        Point p = (Point)btn.Tag;
-                        for (int i = p.X - 1; i <= p.X + 1; i++)
-                            for (int j = p.Y - 1; j <= p.Y + 1; j++)
-                            {
-                                if (i < 0 || j < 0 || i >= row || j >= col || cells[i, j].BackgroundImage != null || cells[i, j].Enabled == false)
-                                    continue;
-                                else if (DataMat[i, j] == 0)
-                                    Btn0Clicked(i, j, cells[i, j]);
-                                else if (DataMat[i, j] == 9)
-                                    Btn9Clicked(i, j, cells[i, j]);
-                                else if (DataMat[i, j] > 0 && DataMat[i, j] < 9)
-                                    DisableButton(i, j, cells[i, j]);
-                            }
-                        break;
-                    }
-        }
-
         private int ButtonAround(int r, int c)
         {
             int res = 0;
@@ -133,6 +112,36 @@ namespace MiniGames
                     myButton.BackgroundImage = MineSwiper.Properties.Resources.Flag;
                 else
                     myButton.BackgroundImage = null;
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            Application.Exit();
+        }
+
+        private void pnlField_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+                foreach (Button btn in cells)
+                    if (btn.Bounds.Contains(e.Location))
+                    {
+                        Point p = (Point)btn.Tag;
+                        for (int i = p.X - 1; i <= p.X + 1; i++)
+                            for (int j = p.Y - 1; j <= p.Y + 1; j++)
+                            {
+                                if (i < 0 || j < 0 || i >= row || j >= col || cells[i, j].BackgroundImage != null || cells[i, j].Enabled == false)
+                                    continue;
+                                else if (DataMat[i, j] == 0)
+                                    Btn0Clicked(i, j, cells[i, j]);
+                                else if (DataMat[i, j] == 9)
+                                    Btn9Clicked(i, j, cells[i, j]);
+                                else if (DataMat[i, j] > 0 && DataMat[i, j] < 9)
+                                    DisableButton(i, j, cells[i, j]);
+                            }
+                        break;
+                    }
+
         }
 
         private void DisableButton(int x, int y, Button btn)
