@@ -13,14 +13,9 @@ namespace MiniGames
 {
     public partial class frmMain : Form
     {
-        int row = 10, col = 10, size = 30, MineNo = 15;
+        int row = 10, col = 10, size = 30, MineNo = 25;
         int[,] DataMat = new int[10, 10];
         Button[,] cells = new Button[10, 10];
-        Dictionary<int, Color> NumbersColor = new Dictionary<int, Color>()
-        {
-            {0, Color.Gray}, {1, Color.Blue}, {2, Color.Green}, {3, Color.Red}, {4, Color.Brown},
-            {5, Color.GreenYellow}, {6, Color.HotPink}, {7, Color.Khaki}, {8, Color.Indigo}, {9, Color.Orange}
-        };
 
         public frmMain()
         {
@@ -82,6 +77,29 @@ namespace MiniGames
             return DataMat;
         }
 
+        private void frmMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+                foreach (Button btn in cells)
+                    if (btn.Bounds.Contains(e.Location))
+                    {
+                        Point p = (Point)btn.Tag;
+                        for (int i = p.X - 1; i <= p.X + 1; i++)
+                            for (int j = p.Y - 1; j <= p.Y + 1; j++)
+                            {
+                                if (i < 0 || j < 0 || i >= row || j >= col || cells[i, j].BackgroundImage != null || cells[i, j].Enabled == false)
+                                    continue;
+                                else if (DataMat[i, j] == 0)
+                                    Btn0Clicked(i, j, cells[i, j]);
+                                else if (DataMat[i, j] == 9)
+                                    Btn9Clicked(i, j, cells[i, j]);
+                                else if (DataMat[i, j] > 0 && DataMat[i, j] < 9)
+                                    DisableButton(i, j, cells[i, j]);
+                            }
+                        break;
+                    }
+        }
+
         private int ButtonAround(int r, int c)
         {
             int res = 0;
@@ -101,49 +119,20 @@ namespace MiniGames
             Button myButton = (Button)sender;
             if (e.Button == MouseButtons.Left)
             {
-                myButton.Enabled = false;
                 Point p = (Point)myButton.Tag;
                 int num = DataMat[p.X, p.Y];
                 if (num == 9)
-                {
-                    myButton.BackColor = Color.Red;
-                    for (int i = 0; i < row; i++)
-                        for (int j = 0; j < col; j++)
-                            DisableButton(i, j, cells[i, j]);
-                }
+                    Btn9Clicked(p.X, p.Y, myButton);
                 else if (num == 0)
-                {
-                    Point[] zeros = new Point[row * col];
-                    for (int i = 0; i < row * col; i++)
-                        zeros[i] = new Point(-1, -1);
-                    zeros[0] = p;
-                    int cnt = 0;
-                    for (int m = 0; m < row * col; m++)
-                    {
-                        Point pp = zeros[m];
-                        if (pp == new Point(-1, -1))
-                            break;
-                        for (int i = pp.X - 1; i <= pp.X + 1; i++)
-                            for (int j = pp.Y - 1; j <= pp.Y + 1; j++)
-                            {
-                                if (i < 0 || j < 0 || i >= row || j >= col || (i == pp.X && j == pp.Y))
-                                    continue;
-                                else if (DataMat[i, j] == 0 && cells[i, j].Enabled == true)
-                                {
-                                    cnt++;
-                                    zeros[cnt] = new Point(i, j);
-                                    DisableButton(i, j, cells[i, j]);
-                                }
-                                else if (DataMat[i, j] > 0 && DataMat[i, j] < 9)
-                                    DisableButton(i, j, cells[i, j]);
-                            }
-                    }
-                }
+                    Btn0Clicked(p.X, p.Y, myButton);
                 else
                     DisableButton(p.X, p.Y, myButton);
             }
             else if (e.Button == MouseButtons.Right)
-                myButton.BackgroundImage = MineSwiper.Properties.Resources.Flag;
+                if (myButton.BackgroundImage == null)
+                    myButton.BackgroundImage = MineSwiper.Properties.Resources.Flag;
+                else
+                    myButton.BackgroundImage = null;
         }
 
         private void DisableButton(int x, int y, Button btn)
@@ -160,6 +149,46 @@ namespace MiniGames
                 default:
                     btn.Text = DataMat[x, y].ToString();
                     break;
+            }
+        }
+
+        private void Btn9Clicked(int x, int y, Button btn)
+        {
+            btn.BackColor = Color.Red;
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
+                    DisableButton(i, j, cells[i, j]);
+
+        }
+
+        private void Btn0Clicked(int x, int y, Button btn)
+        {
+            btn.Enabled = false;
+            int L = row * col;
+            Point[] zeros = new Point[L];
+            for (int i = 0; i < L; i++)
+                zeros[i] = new Point(-1, -1);
+            zeros[0] = new Point(x, y);
+            int cnt = 0;
+            for (int m = 0; m < L; m++)
+            {
+                Point pp = zeros[m];
+                if (pp == new Point(-1, -1))
+                    break;
+                for (int i = pp.X - 1; i <= pp.X + 1; i++)
+                    for (int j = pp.Y - 1; j <= pp.Y + 1; j++)
+                    {
+                        if (i < 0 || j < 0 || i >= row || j >= col || (i == pp.X && j == pp.Y))
+                            continue;
+                        else if (DataMat[i, j] == 0 && cells[i, j].Enabled == true)
+                        {
+                            cnt++;
+                            zeros[cnt] = new Point(i, j);
+                            DisableButton(i, j, cells[i, j]);
+                        }
+                        else if (DataMat[i, j] > 0 && DataMat[i, j] < 9)
+                            DisableButton(i, j, cells[i, j]);
+                    }
             }
         }
     }
